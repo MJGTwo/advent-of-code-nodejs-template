@@ -2,7 +2,8 @@ import { run } from "promise-path";
 import { report, fromHere, replaceInFile } from "./util";
 
 const setup = async (): Promise<void> => {
-  const currentPath: string = fromHere("/");
+  const currentPath: string = await fromHere("/");
+  console.log(currentPath);
   const currentFolder: string = currentPath.split("/").reverse()[1];
 
   report("Setting up template from:", currentFolder);

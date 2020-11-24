@@ -7,11 +7,12 @@ import packageData from "../package.json";
 
 async function generateIndexHTML() {
   const title: string = packageData.logName;
-  const solutions = await find(fromHere("/*"));
+  const here: string = await fromHere("../");
+  const solutions = await find(await fromHere("/*"));
   const links = solutions
     .filter((n) => n.indexOf(".ts") === -1 && n.indexOf(".html") === -1)
     .map((solution) => {
-      const folder = solution.substr(fromHere("../").length);
+      const folder = solution.substr(here.length);
       return `      <li><a href="/${folder}/viewer.html">${folder}</a></li>`;
     });
 
@@ -30,13 +31,13 @@ ${links.join("\n")}
 </html>
   `;
 
-  report("Updated hard coded index:", fromHere("index.html"));
+  report("Updated hard coded index:", await fromHere("index.html"));
   await write(fromHere("index.html"), html, "utf8");
 
   return html;
 }
 
-app.use("/solutions", express.static(fromHere("")));
+app.use("/solutions", async () => express.static(await fromHere("")));
 
 app.get("/", async (req, res) => {
   const html = await generateIndexHTML();

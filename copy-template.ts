@@ -24,7 +24,7 @@ async function fetchAOCDInput(currentYear: number, currentDay: number) {
 async function copyTemplate() {
   const newFolderName = process.argv[2];
   const templateFolderPath = "solutions/template";
-  const targetFolderPath = fromHere(`solutions/${newFolderName}`);
+  const targetFolderPath: string = await fromHere(`solutions/${newFolderName}`);
 
   if (!newFolderName) {
     return report(
@@ -48,10 +48,10 @@ async function copyTemplate() {
     templateFolderPath
   );
 
-  const templateFiles = await find(fromHere(`${templateFolderPath}/*`));
+  const templateFiles = await find(await fromHere(`${templateFolderPath}/*`));
   await make(fromHere(`solutions/${newFolderName}`));
   await Promise.all(
-    templateFiles.map(async (filepath) => {
+    templateFiles.map(async (filepath: string) => {
       const contents = await read(filepath);
       const filename = path.parse(filepath).base;
       const newFilePath = `solutions/${newFolderName}/${filename}`;
@@ -63,7 +63,7 @@ async function copyTemplate() {
   report("Attemping to download puzzle input for this date");
 
   const currentPath = fromHere("/");
-  const currentFolder = currentPath.split("/").reverse()[1];
+  const currentFolder = (await currentPath).split("/").reverse()[1];
   const currentYearString: string | undefined = currentFolder.split("-").pop();
   const currentDay: number = Number.parseInt(newFolderName.replace("day", ""));
   if (!currentYearString || !currentDay) {
