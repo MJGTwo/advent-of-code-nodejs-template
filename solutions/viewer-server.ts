@@ -1,14 +1,14 @@
 import express from "express";
 import { find, write } from "promise-path";
 import { fromHere, report } from "../util";
+import packageData from "../package.json";
 
 const app = express();
-import packageData from "../package.json";
 
 async function generateIndexHTML() {
   const title: string = packageData.logName;
-  const here: string = await fromHere("../");
-  const solutions = await find(await fromHere("/*"));
+  const here: string = fromHere("../");
+  const solutions = await find(fromHere("/*"));
   const links = solutions
     .filter((n) => n.indexOf(".ts") === -1 && n.indexOf(".html") === -1)
     .map((solution) => {
@@ -31,13 +31,13 @@ ${links.join("\n")}
 </html>
   `;
 
-  report("Updated hard coded index:", await fromHere("index.html"));
+  report("Updated hard coded index:", fromHere("index.html"));
   await write(fromHere("index.html"), html, "utf8");
 
   return html;
 }
 
-app.use("/solutions", async () => express.static(await fromHere("")));
+app.use("/solutions", express.static(fromHere("")));
 
 app.get("/", async (req, res) => {
   const html = await generateIndexHTML();

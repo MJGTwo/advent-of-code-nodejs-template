@@ -5,10 +5,8 @@
   "description": "Advent of Code Template using Node TS for Current Year.",
   "main": "run.ts",
   "scripts": {
-    "start": "yarn test && ts-node run.ts",
-    "webserver": "ts-node solutions/viewer-server.ts",
-    "test": "yarn lint",
-    "lint": "standard --fix"
+    "start": "ts-node run.ts",
+    "webserver": "ts-node solutions/viewer-server.ts"
   },
   "author": "John Beech, Michael Gardner",
   "license": "ISC",
@@ -16,7 +14,6 @@
     "express": "^4.16.4",
     "pre-push": "*",
     "promise-path": "*",
-    "standard": "*",
     "stats-lite": "*"
   },
   "devDependencies": {

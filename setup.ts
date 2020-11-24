@@ -2,7 +2,7 @@ import { run } from "promise-path";
 import { report, fromHere, replaceInFile } from "./util";
 
 const setup = async (): Promise<void> => {
-  const currentPath: string = await fromHere("/");
+  const currentPath: string = fromHere("/");
   console.log(currentPath);
   const currentFolder: string = currentPath.split("/").reverse()[1];
 

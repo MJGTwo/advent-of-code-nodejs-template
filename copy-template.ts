@@ -24,10 +24,10 @@ async function fetchAOCDInput(currentYear: number, currentDay: number) {
 async function copyTemplate() {
   const newFolderName = process.argv[2];
   const templateFolderPath = "solutions/template";
-  const targetFolderPath: string = await fromHere(`solutions/${newFolderName}`);
+  const targetFolderPath: string = fromHere(`solutions/${newFolderName}`);
 
   if (!newFolderName) {
-    return report(
+    return await report(
       "No path specified to copy to.",
       "Please specify a folder name as an argument to this script.",
       "e.g. node copy-template day5"
@@ -48,7 +48,7 @@ async function copyTemplate() {
     templateFolderPath
   );
 
-  const templateFiles = await find(await fromHere(`${templateFolderPath}/*`));
+  const templateFiles = await find(fromHere(`${templateFolderPath}/*`));
   await make(fromHere(`solutions/${newFolderName}`));
   await Promise.all(
     templateFiles.map(async (filepath: string) => {
@@ -77,12 +77,17 @@ async function copyTemplate() {
 
   if (+currentYear > 0 && currentDay > 0) {
     report(`Potentially valid year (${currentYear}) / day (${currentDay})`);
-    const aocInputText = await fetchAOCDInput(+currentYear, currentDay);
-    await write(
-      fromHere(`solutions/${newFolderName}/input.txt`),
-      aocInputText,
-      "utf8"
-    );
+    try {
+      const aocInputText = await fetchAOCDInput(+currentYear, currentDay);
+      console.log("newfoldername", newFolderName);
+      await write(
+        fromHere(`solutions/${newFolderName}/input.txt`),
+        aocInputText,
+        "utf8"
+      );
+    } catch (ex) {
+      console.error(ex);
+    }
   } else {
     report(`Invalid year (${currentYear}) / day (${currentDay})`);
   }
