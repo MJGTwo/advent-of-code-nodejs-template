@@ -4,7 +4,6 @@ import { fromHere, report as reportGen } from "../../util";
 const report = reportGen(__filename);
 
 export async function run(day: string) {
-  console.log("why am i running");
   const input = (
     await read(fromHere(`solutions/${day}` + "/input.txt"), "utf8")
   ).trim();

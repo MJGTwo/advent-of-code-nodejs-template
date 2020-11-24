@@ -1,6 +1,8 @@
 import path from "path";
 import { make, find, read, write, run } from "promise-path";
-import { report, fromHere } from "./util";
+import { report as reportGen, fromHere } from "./util";
+
+const report = reportGen(__filename);
 
 async function fetchAOCDInput(currentYear: number, currentDay: number) {
   report(

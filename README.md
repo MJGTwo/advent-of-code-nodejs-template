@@ -2,6 +2,8 @@
 
 Advent of Code Template using Node TS for Current Year.
 
+Forked from [johnbeech's repo](https://github.com/johnbeech/advent-of-code-nodejs-template)
+
 ## Setup
 
 If using the Advent of Code Template repo; click [**`Use this template`**](https://github.com/MJGTwo/advent-of-code-nodets-template/generate) and set a new repository name.
