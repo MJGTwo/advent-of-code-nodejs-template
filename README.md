@@ -1,10 +1,10 @@
 # Advent of Code Template
 
-Advent of Code Template using Node JS for Current Year.
+Advent of Code Template using Node TS for Current Year.
 
 ## Setup
 
-If using the Advent of Code Template repo; click [**`Use this template`**](https://github.com/johnbeech/advent-of-code-nodejs-template/generate) and set a new repository name.
+If using the Advent of Code Template repo; click [**`Use this template`**](https://github.com/MJGTwo/advent-of-code-nodets-template/generate) and set a new repository name.
 
 Clone this repo, then run `yarn install` to install dependencies.
 
