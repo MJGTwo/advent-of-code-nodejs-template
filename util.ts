@@ -1,8 +1,9 @@
 import path from "path";
 import { read, write, position } from "promise-path";
-
-export const fromHere = position(__dirname);
-export const report = (filename: string) => async (...messages: string[]) =>
+const fromHere = position(__dirname);
+export const reportGenerator = (filename: string) => async (
+  ...messages: string[]
+) =>
   console.log(
     `[${require(await fromHere("./package.json")).logName} / ${filename
       .split(path.sep)

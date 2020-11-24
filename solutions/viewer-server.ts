@@ -1,9 +1,10 @@
 import express from "express";
-import { find, write } from "promise-path";
-import { fromHere, report as reportGen } from "../util";
+import { find, write, position } from "promise-path";
+import { reportGenerator } from "../util";
 import packageData from "../package.json";
 
-const report = reportGen(__filename);
+const report = reportGenerator(__filename);
+const fromHere = position(__dirname);
 const app = express();
 
 async function generateIndexHTML() {
