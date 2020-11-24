@@ -59,9 +59,9 @@ const setup = async (): Promise<void> => {
   await run(`rm ${fromHere("setup.js")}`);
 
   report("Committing changes and pushing to remote");
-  // await run("git add .");
-  // await run(`git commit -m "Setup template for Current Year (${currentYear})"`);
-  // await run("git push");
+  await run("git add .");
+  await run(`git commit -m "Setup template for Current Year (${currentYear})"`);
+  await run("git push");
 
   report(`All done! ${currentYear} setup and ready to go~`);
 };
