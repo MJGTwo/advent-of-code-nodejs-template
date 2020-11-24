@@ -1,5 +1,7 @@
 import { read } from "promise-path";
-import { fromHere, report } from "../../util";
+import { fromHere, report as reportGen } from "../../util";
+
+const report = reportGen(__filename);
 
 export async function run(day: string) {
   console.log("why am i running");
