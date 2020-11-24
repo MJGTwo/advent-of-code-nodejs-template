@@ -6,7 +6,7 @@
   "main": "run.ts",
   "scripts": {
     "start": "yarn test && ts-node run.ts",
-    "webserver": "node solutions/viewer-server.ts",
+    "webserver": "ts-node solutions/viewer-server.ts",
     "test": "yarn lint",
     "lint": "standard --fix"
   },

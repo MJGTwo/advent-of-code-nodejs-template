@@ -1,3 +1,4 @@
+import path from "path";
 import { read, write, position } from "promise-path";
 
 export const fromHere = (directory = __dirname): string => position(directory);

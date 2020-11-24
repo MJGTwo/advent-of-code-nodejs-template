@@ -6,10 +6,10 @@ const app = express();
 import packageData from "../package.json";
 
 async function generateIndexHTML() {
-  const title = packageData.logName;
+  const title: string = packageData.logName;
   const solutions = await find(fromHere("/*"));
   const links = solutions
-    .filter((n) => n.indexOf(".js") === -1 && n.indexOf(".html") === -1)
+    .filter((n) => n.indexOf(".ts") === -1 && n.indexOf(".html") === -1)
     .map((solution) => {
       const folder = solution.substr(fromHere("../").length);
       return `      <li><a href="/${folder}/viewer.html">${folder}</a></li>`;
